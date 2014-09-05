@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using CVHomepage.ViewModels;
 using CVHomepage.Models;
 
 namespace CVHomepage.Controllers
