@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CVHomepage.Models
+namespace CVHomepage.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {
