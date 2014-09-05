@@ -6,11 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CVHomepage.Models
 {
-    //This is the base for Tags and Category 
+    //This will be the base for Tags and Category 
     public class Filter
     {
-        [Required]
-        [Key]
         public int ID { get; set; }
 
         [Required]

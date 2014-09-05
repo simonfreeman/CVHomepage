@@ -11,10 +11,10 @@ namespace CVHomepage.DAL
         {
         }
 
-        public DbSet<Skill> Skills { get; set; }
+        
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Filter> Filters { get; set; }
+        public DbSet<Skill> Skills { get; set; }
 
     }
 }

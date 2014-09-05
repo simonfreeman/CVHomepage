@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.ComponentModel.DataAnnotations;
-
 
 namespace CVHomepage.Models
 {
@@ -11,14 +12,19 @@ namespace CVHomepage.Models
 
         [Required]
         [StringLength(50, MinimumLength = 1)]
-        public string Name;
+        public string Name{ get; set; }
 
-        public string Notes;
+        
+        public string Notes { get; set; }
 
-        [Display(Name = "CV Text")]
-        public string CVText;
+        [Required]
+        public string CVText { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
+        
         public virtual Category Category { get; set; }
+
+
+      
     }
 }
