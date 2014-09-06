@@ -12,21 +12,19 @@ namespace CVHomepage.DAL
     {
         protected override void Seed(CVContext context)
         {
-            //Skills
-            var skills = new List<Skill>
-            {
-              new Skill { Name = "University Software Development", CVText = "Software development classes used a variety of languages, including C#. A grade of 82% was achieved in Computer Programming."},
-              new Skill{Name = "University Business Law",CVText = "Law modules covered highly relevant areas such as the Computer Misuse Act and the Data Protection Act." }
-            };
 
-            skills.ForEach(s => context.Skills.AddOrUpdate(p => p.Name, s));
-            context.SaveChanges();
 
-            //Categories
+            
+
+            //Categories and skills
             var categories = new List<Category>
             {
-                new Category{Name = "Education", Description = "Any formal study. Not too much detail."},
-                new Category{Name = "Web Development", Description = "Skills directly linked to making websites."}
+                new Category{ Name = "Education", Description = "Any formal study. Not too much detail.",
+                Skills = new List<Skill>{
+                    new Skill { Name = "University Software Development", CVText = "Software development classes used a variety of languages, including C#. A grade of 82% was achieved in Computer Programming."},
+                    new Skill{Name = "University Business Law",CVText = "Law modules covered highly relevant areas such as the Computer Misuse Act and the Data Protection Act."}
+                }},
+                new Category{ Name = "Web Development", Description = "Skills directly linked to making websites."}
             };
 
             categories.ForEach(c => context.Categories.AddOrUpdate(b => b.Name, c));

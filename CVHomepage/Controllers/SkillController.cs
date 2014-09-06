@@ -18,7 +18,8 @@ namespace CVHomepage.Controllers
         // GET: /Skill/
         public ActionResult Index()
         {
-            return View(db.Skills.ToList());
+            var skills = db.Skills.Include(s => s.Category);
+            return View(skills.ToList());
         }
 
         // GET: /Skill/Details/5
@@ -39,6 +40,7 @@ namespace CVHomepage.Controllers
         // GET: /Skill/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace CVHomepage.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Name,Notes,CVText")] Skill skill)
+        public ActionResult Create([Bind(Include="ID,Name,Notes,CVText,CategoryID")] Skill skill)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace CVHomepage.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
             return View(skill);
         }
 
@@ -71,6 +74,7 @@ namespace CVHomepage.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
             return View(skill);
         }
 
@@ -79,7 +83,7 @@ namespace CVHomepage.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Name,Notes,CVText")] Skill skill)
+        public ActionResult Edit([Bind(Include="ID,Name,Notes,CVText,CategoryID")] Skill skill)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace CVHomepage.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
             return View(skill);
         }
 

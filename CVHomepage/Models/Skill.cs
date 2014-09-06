@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CVHomepage.Models
 {
@@ -19,6 +20,9 @@ namespace CVHomepage.Models
 
         [Required]
         public string CVText { get; set; }
+
+        
+        public int CategoryID { get; set; }
 
         public virtual ICollection<SkillTag> SkillTags { get; set; }
         
