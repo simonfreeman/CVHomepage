@@ -14,13 +14,13 @@ namespace CVHomepage.Models
         [StringLength(50, MinimumLength = 1)]
         public string Name{ get; set; }
 
-        
+        [DisplayFormat(NullDisplayText = "No notes")]
         public string Notes { get; set; }
 
         [Required]
         public string CVText { get; set; }
 
-        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<SkillTag> SkillTags { get; set; }
         
         public virtual Category Category { get; set; }
 

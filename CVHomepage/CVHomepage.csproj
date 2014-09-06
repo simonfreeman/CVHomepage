@@ -173,6 +173,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\Skill.cs" />
+    <Compile Include="Models\SkillTag.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
