@@ -18,7 +18,7 @@ namespace CVHomepage.Models
         [Required]
         [StringLength(50, MinimumLength = 1)]
         public string Description { get; set; }
-        public virtual ICollection<SkillTag> SkillTags { get; set; }
+        public virtual ICollection<Skill> Skills { get; set; }
         
     }
 }

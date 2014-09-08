@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryID, "CategoryID", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CategoryID, "Category", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("CategoryID", String.Empty)
                 @Html.ValidationMessageFor(model => model.CategoryID)
