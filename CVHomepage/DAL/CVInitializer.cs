@@ -35,7 +35,7 @@ namespace CVHomepage.DAL
             Tag tag2 = new Tag { Name = "Computing", Description = "Anything to do with computer use." };
             Tag tag3 = new Tag { Name = "University", Description = "Skills studied at university." };
             Tag tag4 = new Tag { Name = "Business", Description = "Skills used in business." };
-            Tag tag5 = new Tag { Name = "Computing", Description = "Anything related to computer use." };
+            Tag tag5 = new Tag { Name = "Programming", Description = "Things related to creating code." };
 
 
             //Skills add tags before they get added to categories.

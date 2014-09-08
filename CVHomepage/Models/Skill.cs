@@ -15,10 +15,11 @@ namespace CVHomepage.Models
         [StringLength(50, MinimumLength = 1)]
         public string Name{ get; set; }
 
-        [DisplayFormat(NullDisplayText = "No notes")]
+        [DisplayFormat(NullDisplayText = "No notes.")]
         public string Notes { get; set; }
 
         [Required]
+        [Display(Name = "CV Text")]
         public string CVText { get; set; }
 
         

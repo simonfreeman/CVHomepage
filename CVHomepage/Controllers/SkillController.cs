@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CVHomepage.Models;
 using CVHomepage.DAL;
+using CVHomepage.ViewModels;
 
 namespace CVHomepage.Controllers
 {
@@ -41,6 +42,9 @@ namespace CVHomepage.Controllers
         public ActionResult Create()
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
+            Skill skill = new Skill();
+            skill.Tags = new List<Tag>();
+            getTagData(skill);
             return View();
         }
 
@@ -49,8 +53,18 @@ namespace CVHomepage.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Name,Notes,CVText,CategoryID")] Skill skill)
+        public ActionResult Create([Bind(Include="ID,Name,Notes,CVText,CategoryID")] Skill skill,string[]selectedTags)
         {
+            if (selectedTags!=null)
+            {
+                skill.Tags = new List<Tag>();
+                foreach(var tag in selectedTags)
+                {
+                    var tagToAdd = db.Tags.Find(int.Parse(tag));
+                    skill.Tags.Add(tagToAdd);
+                }
+                
+            }
             if (ModelState.IsValid)
             {
                 db.Skills.Add(skill);
@@ -70,11 +84,13 @@ namespace CVHomepage.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Skill skill = db.Skills.Find(id);
+            getTagData(skill);
             if (skill == null)
             {
                 return HttpNotFound();
             }
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
+           
             return View(skill);
         }
 
@@ -83,14 +99,22 @@ namespace CVHomepage.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Name,Notes,CVText,CategoryID")] Skill skill)
+        public ActionResult Edit([Bind(Include="ID,Name,Notes,CVText,CategoryID")] Skill skill, string[] selectedTags)
         {
+            skill.Tags = new List<Tag>();
+            foreach (var tag in selectedTags)
+            {
+                var tagToAdd = db.Tags.Find(int.Parse(tag));
+                skill.Tags.Add(tagToAdd);
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(skill).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
             return View(skill);
         }
@@ -128,6 +152,23 @@ namespace CVHomepage.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private void getTagData(Skill skill)
+        {
+            var allTags = db.Tags;
+            var skillTags = new HashSet<int>(skill.Tags.Select(c => c.ID));
+            var viewModel = new List<SkillTagData>();
+            foreach (var tag in allTags)
+            {
+                viewModel.Add(new SkillTagData
+                {
+                    ID = tag.ID,
+                    Name = tag.Name,
+                    Assigned = skillTags.Contains(tag.ID)
+                });
+            }
+            ViewBag.Tags = viewModel;
         }
     }
 }
