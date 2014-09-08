@@ -70,6 +70,7 @@ namespace CVHomepage.Controllers
                 db.Skills.Add(skill);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                
             }
 
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
@@ -99,17 +100,32 @@ namespace CVHomepage.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Name,Notes,CVText,CategoryID")] Skill skill, string[] selectedTags)
+        public ActionResult Edit([Bind(Include="ID,Name,Notes,CVText,CategoryID")]Skill skill, string[] selectedTags)
         {
-            skill.Tags = new List<Tag>();
+            //for some reason it's not understanding the skill being returned exists, so I'm using it's info
+            // to find and then update a different skill variable.
+            var skillToUpdate = db.Skills
+               .Include(i => i.Tags)
+               .Include(i => i.Category)
+               .Where(i => i.ID == skill.ID )
+               .Single();
+            skillToUpdate.Name = skill.Name;
+            skillToUpdate.Notes = skill.Notes;
+            skillToUpdate.CVText = skill.CVText;
+            skillToUpdate.CategoryID = skill.CategoryID;
+            
+            skillToUpdate.Tags = new List<Tag>();
             foreach (var tag in selectedTags)
             {
                 var tagToAdd = db.Tags.Find(int.Parse(tag));
-                skill.Tags.Add(tagToAdd);
+
+                skillToUpdate.Tags.Add(tagToAdd);
             }
             if (ModelState.IsValid)
             {
-                db.Entry(skill).State = EntityState.Modified;
+                
+                db.Entry(skillToUpdate).State = EntityState.Modified;
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
