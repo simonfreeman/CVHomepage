@@ -17,12 +17,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.CVText)
         </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+
         <th>
             Tags
         </th>
@@ -37,14 +40,20 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.CVText)
+        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CVText)
-        </td>
-        <td>
-            
+            @foreach (var tag in item.Tags)
+            {
+                @Html.DisplayFor(modelItem => tag.Name)
+                @Html.Raw(", ")
+            }
         </td>
      
         <td>
