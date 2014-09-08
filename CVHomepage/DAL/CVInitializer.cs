@@ -33,7 +33,7 @@ namespace CVHomepage.DAL
             //Tags.
             Tag tag1 = new Tag{Name = "Web", Description = "Anything to do with websites."};
             Tag tag2 = new Tag { Name = "Computing", Description = "Anything to do with computer use." };
-            Tag tag3 = new Tag { Name = "Universty", Description = "Skills studied at university." };
+            Tag tag3 = new Tag { Name = "University", Description = "Skills studied at university." };
             Tag tag4 = new Tag { Name = "Business", Description = "Skills used in business." };
             Tag tag5 = new Tag { Name = "Computing", Description = "Anything related to computer use." };
 
