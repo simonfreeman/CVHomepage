@@ -42,6 +42,17 @@
             @Html.DisplayFor(model => model.CVText)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Tags)
+        </dt>
+
+        <dd>
+            @foreach (var tag in Model.Tags)
+            {
+                @Html.DisplayFor(modelItem => tag.Name)
+                @Html.Raw(", ")
+            }
+        </dd>
     </dl>
 </div>
 <p>
