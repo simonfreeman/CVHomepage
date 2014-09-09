@@ -15,7 +15,7 @@ namespace CVHomepage.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "About Me.";
+            
 
             return View();
         }
