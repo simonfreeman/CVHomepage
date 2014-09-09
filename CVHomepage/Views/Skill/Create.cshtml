@@ -14,7 +14,7 @@
     <div class="form-horizontal">
         <h4>Skill</h4>
         <hr />
-        @Html.ValidationSummary(true)
+            
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
@@ -50,26 +50,26 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Tags, "Tags", new { @class = "control-label col-md-3" })
-<div class="col-md-offset-1">
-    <br/>
-    @{
-        int count = 0;
-        foreach (var tag in ViewBag.Tags)
-        {
-            //this if statement simply spaces tags out onto lines after 4 tags so it doesn't look horrible
-            if (count % 4 == 0)
-            {
-                <br />
-            }
-            <label>@tag.Name</label>
-            <input type="checkbox"
-                   name="selectedTags"
-                   value="@tag.ID"
-                   @(Html.Raw(tag.Assigned ? "checked=\"checked\"" : "")) />
-            count++;
-        }
-    }
-</div>
+            <div class="col-md-offset-1">
+                <br/>
+                @{
+                    int count = 0;
+                    foreach (var tag in ViewBag.Tags)
+                    {
+                        //this if statement simply spaces tags out onto lines after 4 tags so it doesn't look horrible
+                        if (count % 4 == 0)
+                        {
+                            <br />
+                        }
+                        <label>@tag.Name</label>
+                        <input type="checkbox"
+                               name="selectedTags"
+                               value="@tag.ID"
+                               @(Html.Raw(tag.Assigned ? "checked=\"checked\"" : "")) />
+                        count++;
+                    }
+                }
+            </div>
 
         </div>
 
