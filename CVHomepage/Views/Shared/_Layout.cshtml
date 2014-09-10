@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using CVHomepage.Helpers.HTMLHelpers;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,7 +11,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-default navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -21,12 +23,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Portfolio", "Portfolio", "Home")</li>
-                    <li>@Html.ActionLink("CV", "CV", "Home")</li>
-                    <li>@Html.ActionLink("CV Builder Demo", "Index", "CV")</li>
-                    <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
+                    <li>@Html.MenuLink("Home", "Index", "Home")</li>
+                    <li>@Html.MenuLink("About", "About", "Home")</li>
+                    <li>@Html.MenuLink("Portfolio", "Portfolio", "Home")</li>
+                    <li>@Html.MenuLink("CV", "CV", "Home")</li>
+                    <li>@Html.MenuLink("CV Builder Demo", "Index", "CV")</li>
+                    <li>@Html.MenuLink("Contact", "Index", "Contact")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
