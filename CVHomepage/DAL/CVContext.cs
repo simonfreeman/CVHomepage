@@ -15,6 +15,7 @@ namespace CVHomepage.DAL
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Skill> Skills { get; set; }
+        public DbSet<CV> CVs { get; set; }
         
 
     

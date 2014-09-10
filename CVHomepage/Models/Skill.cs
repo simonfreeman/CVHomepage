@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CVHomepage.Models
 {
@@ -29,6 +25,7 @@ namespace CVHomepage.Models
         
         public virtual Category Category { get; set; }
 
+        public virtual ICollection<CV> CVs { get; set; }
 
       
     }

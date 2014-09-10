@@ -173,6 +173,7 @@
     </Compile>
     <Compile Include="Helpers\HTMLHelpers.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CV.cs" />
     <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\Tag.cs" />
@@ -192,6 +193,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\spfreeman.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

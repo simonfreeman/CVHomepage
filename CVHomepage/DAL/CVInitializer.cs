@@ -59,8 +59,16 @@ namespace CVHomepage.DAL
             context.Categories.Add(cat1);
             context.Categories.Add(cat2);
 
-          
+          //CVs
+            CV cv1 = new CV { Name = "Default", Skills = new List<Skill>(), User = "blah"};
+            CV cv2 = new CV { Name = "Test", Skills = new List<Skill>(), User = "blah"};
 
+            cv1.Skills.Add(skill1);
+            cv1.Skills.Add(skill2);
+            cv2.Skills.Add(skill2);
+
+            context.CVs.Add(cv1);
+            context.CVs.Add(cv2);
            
         }
     }
