@@ -10,6 +10,7 @@ namespace CVHomepage.ViewModels
 
         [Required]
         [Display(Name = "Your Message")]
+        [DataType(DataType.MultilineText)]
         public string MessageBody { get; set; }
 
         [Required]
