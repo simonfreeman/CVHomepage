@@ -163,6 +163,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CVController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\TagController.cs" />
@@ -247,6 +248,11 @@
     <Content Include="Views\Tag\Edit.cshtml" />
     <Content Include="Views\Tag\Index.cshtml" />
     <Content Include="Views\Home\Portfolio.cshtml" />
+    <Content Include="Views\CV\Create.cshtml" />
+    <Content Include="Views\CV\Delete.cshtml" />
+    <Content Include="Views\CV\Details.cshtml" />
+    <Content Include="Views\CV\Edit.cshtml" />
+    <Content Include="Views\CV\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
