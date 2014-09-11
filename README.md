@@ -24,3 +24,7 @@ create a website that can display my cv, basic info, allow people to contact me,
 - Make it look better
 - Add more control to the CV, like reordering segments and bullet points. Swapping between bullets and paragraphs, etc.
 - Add control to styling of CVs
+
+
+##IMPORTANT REMINDERS
+- Right now there's a potential security flaw where you could manipulate the "Select CV" link into pulling other peoples CVs. If i expand out past the demo I need to properly investigate/fix that.
