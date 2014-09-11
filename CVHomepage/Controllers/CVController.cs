@@ -19,10 +19,11 @@ namespace CVHomepage.Controllers
         // GET: /CV/
         public ActionResult Index()
         {
-
+            
             return View(db.CVs.ToList());
         }
 
+        
         // GET: /CV/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,8 +36,12 @@ namespace CVHomepage.Controllers
             {
                 return HttpNotFound();
             }
+
+
             return View(cv);
         }
+
+  
 
         // GET: /CV/Create
         public ActionResult Create()
@@ -81,15 +86,37 @@ namespace CVHomepage.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Name,User")] CV cv)
+        public ActionResult Edit([Bind(Include="ID,Name,User")] CV cv, string[] removingSkills)
         {
+            var cvToUpdate = db.CVs
+                .Include(s => s.Skills)
+                .Where(s => s.ID == cv.ID)
+                .Single();
+
+            cvToUpdate.Name = cv.Name;
+
+            if (removingSkills != null)
+            {
+                foreach (var skill in removingSkills)
+                {
+                    var skillToRemove = db.Skills.Find(int.Parse(skill));
+                    cvToUpdate.Skills.Remove(skillToRemove);
+                }
+            }
+
+
+
             if (ModelState.IsValid)
             {
-                db.Entry(cv).State = EntityState.Modified;
+                db.Entry(cvToUpdate).State = EntityState.Modified;
+
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", new { id = cv.ID });
             }
+
             return View(cv);
+
+           
         }
 
         // GET: /CV/Delete/5
@@ -130,6 +157,8 @@ namespace CVHomepage.Controllers
             SessionHelpers.CurrentSkills = skillList;
             return RedirectToAction("Index");
         }
+
+  
 
         protected override void Dispose(bool disposing)
         {

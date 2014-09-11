@@ -101,3 +101,9 @@ input[type="checkbox"].input-validation-error {
 		background-color: #f9e77d;
 	}
 }
+
+.cvskills td, th
+{
+
+    border-bottom:1px solid black;
+}

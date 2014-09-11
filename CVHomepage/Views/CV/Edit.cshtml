@@ -16,6 +16,7 @@
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.User)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
@@ -25,11 +26,52 @@
             </div>
         </div>
 
-
-
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+
+            @Html.LabelFor(model => model.Skills, "Skills", new { @class = "control-label col-md-3" })
+            <div class="col-md-offset-1">
+                <br />
+                @{
+                    <table class="cvskills">
+                        <tr>
+                            <th>Name</th>
+                            <th>CV Text</th>
+                            <th>Remove Skill?</th>
+                        @foreach (var skill in Model.Skills)
+                        {
+                            <tr>
+                                <th>@skill.Name</th>
+                                <td>@skill.CVText</td>
+                                <td>
+                                    <input type="checkbox"
+                                         name="removingSkills"
+                                        value="@skill.ID"/>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+            </div>
+
+            @*foreach (var tag in ViewBag.Tags)
+        {
+            //this if statement simply spaces tags out onto lines after 4 tags so it doesn't look horrible
+            if (count % 4 == 0)
+            {
+                <br />
+            }
+            @tag.Name
+            <input type="checkbox"
+                   name="selectedTags"
+                   value="@tag.ID"
+                   @(Html.Raw(tag.Assigned ? "checked='checked'" : "")) />
+            count++;
+        }*@
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
             </div>
         </div>
     </div>

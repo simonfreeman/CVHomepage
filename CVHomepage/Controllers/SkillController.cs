@@ -121,11 +121,15 @@ namespace CVHomepage.Controllers
             skillToUpdate.CategoryID = skill.CategoryID;
             
             skillToUpdate.Tags = new List<Tag>();
-            foreach (var tag in selectedTags)
+            skill.Name = null;
+            if (selectedTags != null)
             {
-                var tagToAdd = db.Tags.Find(int.Parse(tag));
+                foreach (var tag in selectedTags)
+                {
+                    var tagToAdd = db.Tags.Find(int.Parse(tag));
 
-                skillToUpdate.Tags.Add(tagToAdd);
+                    skillToUpdate.Tags.Add(tagToAdd);
+                }
             }
             if (ModelState.IsValid)
             {
