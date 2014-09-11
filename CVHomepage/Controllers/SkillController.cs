@@ -61,7 +61,7 @@ namespace CVHomepage.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Name,Notes,CVText,CategoryID")] Skill skill,string[]selectedTags)
+        public ActionResult Create([Bind(Include="ID,Name,Notes,CVText,CategoryID,User")] Skill skill,string[]selectedTags)
         {
             if (selectedTags!=null)
             {
@@ -80,7 +80,7 @@ namespace CVHomepage.Controllers
                 return RedirectToAction("Index");
                 
             }
-
+            getTagData(skill);
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
             return View(skill);
         }
@@ -108,7 +108,7 @@ namespace CVHomepage.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Name,Notes,CVText,CategoryID")]Skill skill, string[] selectedTags)
+        public ActionResult Edit([Bind(Include="ID,Name,Notes,CVText,CategoryID,User")]Skill skill, string[] selectedTags)
         {
             //for some reason it's not understanding the skill being returned exists, so I'm using it's info
             // to find and then update a different skill variable.
@@ -142,7 +142,7 @@ namespace CVHomepage.Controllers
                 return RedirectToAction("Index");
             }
 
-            
+            getTagData(skill);
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
             return View(skill);
         }

@@ -25,10 +25,10 @@ namespace CVHomepage.DAL
             //Skills.
             Skill skill1 = new Skill { Name = "University Software Development", 
                 CVText = "Software development classes used a variety of languages, including C#. A grade of 82% was achieved in Computer Programming.",
-                Tags = new List<Tag>()};
+                Tags = new List<Tag>(), User = "blah"};
             Skill skill2 = new Skill{Name = "University Business Law",
                 CVText = "Law modules covered highly relevant areas such as the Computer Misuse Act and the Data Protection Act.",
-                Tags = new List<Tag>()};
+                Tags = new List<Tag>(), User = "blah"};
                 
             //Tags.
             Tag tag1 = new Tag{Name = "Web", Description = "Anything to do with websites."};

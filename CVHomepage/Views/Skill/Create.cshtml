@@ -1,5 +1,5 @@
 ﻿@model CVHomepage.Models.Skill
-
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Create";
 }
@@ -10,7 +10,7 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+    @Html.Hidden("User", User.Identity.GetUserId())
     <div class="form-horizontal">
         <h4>Skill</h4>
         <hr />

@@ -19,6 +19,8 @@ namespace CVHomepage.Models
         [DataType(DataType.MultilineText)]
         public string CVText { get; set; }
 
+        [Required]
+        public string User { get; set; }
         
         public int CategoryID { get; set; }
 
