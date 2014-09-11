@@ -20,7 +20,9 @@ namespace CVHomepage
         void Session_Start(object sender, EventArgs e)
         {
             // Code that runs when a new session is started
+            
             Session["CurrentSkills"] = new List<int>();
+            Session["CurrentCV"] = 0;
         }
     }
 }

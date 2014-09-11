@@ -11,6 +11,7 @@ namespace CVHomepage.Helpers.SessionHelpers
     {
         //Session variable constants
         public const string SKILLLIST = "CurrentSkills";
+        public const string CURRENTCV = "CurrentCV";
 
 
         public static T Read<T>(string variable)
@@ -37,6 +38,18 @@ namespace CVHomepage.Helpers.SessionHelpers
             set
             {
                 Write(SKILLLIST, value);
+            }
+        }
+
+        public static int CurrentCV
+        {
+            get
+            {
+                return Read<int>(CURRENTCV);
+            }
+            set
+            {
+                Write(CURRENTCV, value);
             }
         }
 

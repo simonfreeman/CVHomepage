@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CVHomepage.Models.Skill>
+@using CVHomepage.Helpers.SessionHelpers
 
 @{
     ViewBag.Title = "Index";
@@ -57,9 +58,24 @@
         </td>
      
         <td>
+            @* Make sure they have a cv selected before they try adding skills to it *@
+
+            @if (SessionHelpers.CurrentCV == 0)
+            {
+                @Html.ActionLink("Select a CV To Add Skills To It", "Index", "CV", new { id = item.ID, url = this.Url }, null) 
+            }
+            @if (SessionHelpers.CurrentCV != 0)
+            {
+                string linkText = "Add to " + ViewBag.CVName ;
+                @Html.ActionLink(linkText, "Add", new { id = item.ID, url = this.Url }) 
+            }
+            <br />
+            <br />
+            <p>Skill Menu</p>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+
         </td>
     </tr>
 }

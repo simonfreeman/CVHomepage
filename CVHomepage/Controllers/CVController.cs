@@ -118,6 +118,19 @@ namespace CVHomepage.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Select(int id)
+        {
+            SessionHelpers.CurrentCV = id;
+            CV cv = db.CVs.Find(id);
+            var skillList = new List<int>();
+            foreach (var skill in cv.Skills)
+            {
+                skillList.Add(skill.ID);
+            }
+            SessionHelpers.CurrentSkills = skillList;
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

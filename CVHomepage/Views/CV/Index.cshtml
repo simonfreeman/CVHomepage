@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CVHomepage.Models.CV>
+@using CVHomepage.Helpers.SessionHelpers
 
 @{
     ViewBag.Title = "Index";
@@ -24,7 +25,16 @@
         </td>
 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @if(item.ID == SessionHelpers.CurrentCV)
+            {
+                @Html.ActionLink("Currently Active CV", "Select", new { id = item.ID })
+            }
+            @if (item.ID != SessionHelpers.CurrentCV)
+	        {
+	         @Html.ActionLink("Select as Active CV", "Select", new { id = item.ID })
+	        }
+             |
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>

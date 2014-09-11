@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using CVHomepage.Models;
 using CVHomepage.DAL;
 using CVHomepage.ViewModels;
-using System.Web.SessionState;
+using CVHomepage.Helpers.SessionHelpers;
 namespace CVHomepage.Controllers
 {
     public class SkillController : Controller
@@ -19,7 +19,13 @@ namespace CVHomepage.Controllers
         // GET: /Skill/
         public ActionResult Index()
         {
-            var skills = db.Skills.Include(s => s.Category);
+            var skills = db.Skills.Include(s => s.Category)
+                .Include(s => s.Tags);
+            if (SessionHelpers.CurrentCV != 0)
+            {
+                var currentCV = db.CVs.Find(SessionHelpers.CurrentCV);
+                ViewBag.CVName = currentCV.Name;
+            }
             return View(skills.ToList());
         }
 
