@@ -9,7 +9,6 @@ create a website that can display my cv, basic info, allow people to contact me,
 
 ###Priority
 - Add new tags or categories alongside skills
-- Better CSS for basically everything
 - Integrate asp identity properly
 - Actual cv generator/builder
 - Enter Data
@@ -19,6 +18,7 @@ create a website that can display my cv, basic info, allow people to contact me,
 ###Plausible extensions
 - Refactor to repository pattern
 - Refactor out to Onion Architecture
+- Refactor in general, especially get some of the trash out of the controllers if possible.
 - Expand out demo to actual user accounts
 - Deal with incoming links from different places
 - Make it look better
