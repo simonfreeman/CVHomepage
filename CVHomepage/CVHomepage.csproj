@@ -173,6 +173,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HTMLHelpers.cs" />
+    <Compile Include="Helpers\SessionHelpers.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CV.cs" />
     <Compile Include="Models\Filter.cs" />

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using CVHomepage.Models;
 using CVHomepage.DAL;
 using CVHomepage.ViewModels;
-
+using System.Web.SessionState;
 namespace CVHomepage.Controllers
 {
     public class SkillController : Controller
