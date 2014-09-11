@@ -1,0 +1,86 @@
+﻿@using CVHomepage.Helpers.HTMLHelpers;
+@using System;
+@*inspired by http://startbootstrap.com/templates/simple-sidebar/*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Homepage of Simon Freeman</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body>
+    <div class="navbar-default navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Homepage of Simon Freeman - ALPHA", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.MenuLink("Home", "Index", "Home")</li>
+                    <li>@Html.MenuLink("About", "About", "Home")</li>
+                    <li>@Html.MenuLink("Portfolio", "Portfolio", "Home")</li>
+                    <li>@Html.MenuLink("CV", "CV", "Home")</li>
+                    @{
+                        string[] additionalNames = {"Skill", "Tag"};
+                    }
+                    <li>@Html.MenuLink("CV Builder Demo", "Index", "CV", @additionalNames)</li>
+                    <li>@Html.MenuLink("Contact", "Index", "Contact")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li> CV Builder Demo Menu</li>
+                <li>@Html.MenuLink("CVs", "Index", "CV")</li>
+                <li>@Html.MenuLink("Skills", "Index", "Skill")</li>
+                <li>@Html.MenuLink("Tags", "Index", "Tag")</li>
+          
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid  ">
+                <div class="col-lg-12">
+                    <br />
+                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Side Menu</a>
+                    @RenderBody()
+                    <hr />
+                    <footer>
+                        <p>&copy; @DateTime.Now.Year - Simon Freeman</p>
+                    </footer>
+                </div>
+            </div>
+        </div> 
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+</body>
+</html>

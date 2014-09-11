@@ -254,6 +254,10 @@
     <Content Include="Views\CV\Details.cshtml" />
     <Content Include="Views\CV\Edit.cshtml" />
     <Content Include="Views\CV\Index.cshtml" />
+    <Content Include="Views\Shared\_SidebarLayout.cshtml" />
+    <Content Include="Views\CV\_ViewStart.cshtml" />
+    <Content Include="Views\Skill\_ViewStart.cshtml" />
+    <Content Include="Views\Tag\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
