@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+// credit to JM Alarcon for this at http://www.campusmvp.net/blog/how-to-manage-session-variables-like-a-pro
 namespace CVHomepage.Helpers.SessionHelpers
 {
 

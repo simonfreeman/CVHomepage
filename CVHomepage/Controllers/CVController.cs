@@ -19,14 +19,7 @@ namespace CVHomepage.Controllers
         // GET: /CV/
         public ActionResult Index()
         {
-            var skills = SessionHelpers.CurrentSkills;
-            skills.Add(1);
-            skills.Add(2);
 
-            SessionHelpers.CurrentSkills = skills;
-            var skills2 = SessionHelpers.CurrentSkills;
-            var cat = skills2[0];
-            var cat2 = skills2[1];
             return View(db.CVs.ToList());
         }
 
