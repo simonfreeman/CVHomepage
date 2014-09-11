@@ -27,7 +27,10 @@
                     <li>@Html.MenuLink("About", "About", "Home")</li>
                     <li>@Html.MenuLink("Portfolio", "Portfolio", "Home")</li>
                     <li>@Html.MenuLink("CV", "CV", "Home")</li>
-                    <li>@Html.MenuLink("CV Builder Demo", "Index", "CV")</li>
+                    @{
+                        string[] additionalNames = { "Skill", "Tag" };
+                    }
+                    <li>@Html.MenuLink("CV Builder Demo", "Index", "CV", @additionalNames)</li>
                     <li>@Html.MenuLink("Contact", "Index", "Contact")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

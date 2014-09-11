@@ -10,6 +10,8 @@ using CVHomepage.Models;
 using CVHomepage.DAL;
 using CVHomepage.ViewModels;
 using CVHomepage.Helpers.SessionHelpers;
+using Microsoft.AspNet.Identity;
+
 namespace CVHomepage.Controllers
 {
     public class SkillController : Controller

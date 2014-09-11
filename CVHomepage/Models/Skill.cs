@@ -16,6 +16,7 @@ namespace CVHomepage.Models
 
         [Required]
         [Display(Name = "CV Text")]
+        [DataType(DataType.MultilineText)]
         public string CVText { get; set; }
 
         

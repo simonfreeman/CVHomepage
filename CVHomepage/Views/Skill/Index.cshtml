@@ -66,8 +66,8 @@
             }
             @if (SessionHelpers.CurrentCV != 0)
             {
-                string linkText = "Add to " + ViewBag.CVName ;
-                @Html.ActionLink(linkText, "Add", new { id = item.ID, url = this.Url }) 
+                string linkText = "Add to \"" + ViewBag.CVName + "\"";
+                @Html.ActionLink(linkText, "AddSkill", "CV", new { id = item.ID, url = this.Url },null) 
             }
             <br />
             <br />

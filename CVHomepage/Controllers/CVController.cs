@@ -158,7 +158,16 @@ namespace CVHomepage.Controllers
             return RedirectToAction("Index");
         }
 
-  
+        public ActionResult AddSkill(int id)
+        {
+            CV cv = db.CVs.Find(SessionHelpers.CurrentCV);
+            Skill skill = db.Skills.Find(id);
+            cv.Skills.Add(skill);
+
+            db.Entry(cv).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Skill");
+        }
 
         protected override void Dispose(bool disposing)
         {
