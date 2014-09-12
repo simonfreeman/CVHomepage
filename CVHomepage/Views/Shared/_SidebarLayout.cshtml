@@ -36,7 +36,7 @@
                     <li>@Html.MenuLink("Portfolio", "Portfolio", "Home")</li>
                     <li>@Html.MenuLink("CV", "CV", "Home")</li>
                     @{
-                        string[] additionalNames = {"Skill", "Tag"};
+                        string[] additionalNames = {"Skill", "Tag", "Category"};
                     }
                     <li>@Html.MenuLink("CV Builder Demo", "Index", "CV", @additionalNames)</li>
                     <li>@Html.MenuLink("Contact", "Index", "Contact")</li>
@@ -54,6 +54,7 @@
                 <li>@Html.MenuLink("CV Manager", "Index", "CV")</li>
                 <li>@Html.MenuLink("Skill Manager", "Index", "Skill")</li>
                 <li>@Html.MenuLink("Tag Manager", "Index", "Tag")</li>
+                <li>@Html.MenuLink("Category Manager", "Index", "Category")</li>
           
             </ul>
         </div>

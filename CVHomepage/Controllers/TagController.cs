@@ -15,7 +15,7 @@ namespace CVHomepage.Controllers
     {
         private CVContext db = new CVContext();
 
-        // GET: /Tag/
+        //// GET: /Tag/
         [Authorize]
         public ActionResult Index()
         {
