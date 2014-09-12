@@ -8,7 +8,7 @@ using System.Data.Entity.Migrations;
 
 namespace CVHomepage.DAL
 {
-    public class CVInitializer : System.Data.Entity.DropCreateDatabaseAlways<CVContext>
+    public class CVInitializer : System.Data.Entity.CreateDatabaseIfNotExists<CVContext>
     {
         protected override void Seed(CVContext context)
         {
@@ -25,10 +25,14 @@ namespace CVHomepage.DAL
             //Skills.
             Skill skill1 = new Skill { Name = "University Software Development", 
                 CVText = "Software development classes used a variety of languages, including C#. A grade of 82% was achieved in Computer Programming.",
-                Tags = new List<Tag>(), User = "blah"};
+                                       Tags = new List<Tag>(),
+                                       User = "ec22dfb2-2817-4a06-9e9d-74be16617449"
+            };
             Skill skill2 = new Skill{Name = "University Business Law",
                 CVText = "Law modules covered highly relevant areas such as the Computer Misuse Act and the Data Protection Act.",
-                Tags = new List<Tag>(), User = "blah"};
+                                     Tags = new List<Tag>(),
+                                     User = "ec22dfb2-2817-4a06-9e9d-74be16617449"
+            };
                 
             //Tags.
             Tag tag1 = new Tag{Name = "Web", Description = "Anything to do with websites."};
@@ -60,8 +64,8 @@ namespace CVHomepage.DAL
             context.Categories.Add(cat2);
 
           //CVs
-            CV cv1 = new CV { Name = "Default", Skills = new List<Skill>(), User = "blah"};
-            CV cv2 = new CV { Name = "Test", Skills = new List<Skill>(), User = "blah"};
+            CV cv1 = new CV { Name = "Default", Skills = new List<Skill>(), User = "ec22dfb2-2817-4a06-9e9d-74be16617449" };
+            CV cv2 = new CV { Name = "Test", Skills = new List<Skill>(), User = "ec22dfb2-2817-4a06-9e9d-74be16617449" };
 
             cv1.Skills.Add(skill1);
             cv1.Skills.Add(skill2);
