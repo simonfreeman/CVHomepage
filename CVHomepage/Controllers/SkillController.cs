@@ -19,6 +19,7 @@ namespace CVHomepage.Controllers
         private CVContext db = new CVContext();
 
         // GET: /Skill/
+        [Authorize]
         public ActionResult Index()
         {
             string user = User.Identity.GetUserId();
@@ -36,6 +37,7 @@ namespace CVHomepage.Controllers
         }
 
         // GET: /Skill/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -51,6 +53,7 @@ namespace CVHomepage.Controllers
         }
 
         // GET: /Skill/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
@@ -63,6 +66,7 @@ namespace CVHomepage.Controllers
         // POST: /Skill/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="ID,Name,Notes,CVText,CategoryID,User")] Skill skill,string[]selectedTags)
@@ -90,6 +94,7 @@ namespace CVHomepage.Controllers
         }
 
         // GET: /Skill/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -125,6 +130,7 @@ namespace CVHomepage.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include="ID,Name,Notes,CVText,CategoryID,User")]Skill skill, string[] selectedTags)
         {
             //for some reason it's not understanding the skill being returned exists, so I'm using it's info
@@ -181,7 +187,9 @@ namespace CVHomepage.Controllers
          
         }
 
+
         // GET: /Skill/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -210,15 +218,14 @@ namespace CVHomepage.Controllers
 
         }
 
+
         // POST: /Skill/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
 
             string user = User.Identity.GetUserId();
             try
@@ -252,6 +259,8 @@ namespace CVHomepage.Controllers
             base.Dispose(disposing);
         }
 
+        //deals with getting all of the tags and marking all the ones the skill is currently using
+        [Authorize]
         private void getTagData(Skill skill)
         {
             var allTags = db.Tags;

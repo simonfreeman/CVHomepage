@@ -17,6 +17,7 @@ namespace CVHomepage.Controllers
     {
         private CVContext db = new CVContext();
 
+        
         // GET: /CV/
         public ActionResult Index()
         {
@@ -24,8 +25,9 @@ namespace CVHomepage.Controllers
             return View(db.CVs.ToList().Where(a => a.User == User.Identity.GetUserId() ));
         }
 
-        
+
         // GET: /CV/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,17 +44,20 @@ namespace CVHomepage.Controllers
             return View(cv);
         }
 
-  
+
 
         // GET: /CV/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
+        
         // POST: /CV/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="ID,Name,User")] CV cv)
@@ -67,7 +72,9 @@ namespace CVHomepage.Controllers
             return View(cv);
         }
 
+        
         // GET: /CV/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -94,9 +101,11 @@ namespace CVHomepage.Controllers
             
         }
 
+        
         // POST: /CV/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="ID,Name,User")] CV cv, string[] removingSkills)
@@ -133,7 +142,9 @@ namespace CVHomepage.Controllers
            
         }
 
+        
         // GET: /CV/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -160,7 +171,9 @@ namespace CVHomepage.Controllers
             
         }
 
+        
         // POST: /CV/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -189,6 +202,7 @@ namespace CVHomepage.Controllers
            
         }
 
+        [Authorize]
         public ActionResult Select(int id)
         {
             SessionHelpers.CurrentCV = id;
@@ -202,6 +216,7 @@ namespace CVHomepage.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public ActionResult AddSkill(int id, string url)
         {
             CV cv = db.CVs.Find(SessionHelpers.CurrentCV);
