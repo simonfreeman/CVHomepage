@@ -28,3 +28,4 @@ create a website that can display my cv, basic info, allow people to contact me,
 
 ##IMPORTANT REMINDERS
 - Right now there's a potential security flaw where you could manipulate the "Select CV" link into pulling other peoples CVs. If i expand out past the demo I need to properly investigate/fix that.
+- Test the security of user id manipulation to get other peoples stuff more thoroughly.
