@@ -21,8 +21,12 @@ namespace CVHomepage.Controllers
         // GET: /Skill/
         public ActionResult Index()
         {
+            string user = User.Identity.GetUserId();
             var skills = db.Skills.Include(s => s.Category)
-                .Include(s => s.Tags);
+                .Include(s => s.Tags)
+                .Where(a => a.User == user);
+
+            //this is used to tell people what cv they are going to add the skill to
             if (SessionHelpers.CurrentCV != 0)
             {
                 var currentCV = db.CVs.Find(SessionHelpers.CurrentCV);
@@ -92,15 +96,28 @@ namespace CVHomepage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Skill skill = db.Skills.Find(id);
-            getTagData(skill);
-            if (skill == null)
+
+            string user = User.Identity.GetUserId();
+            try
             {
-                return HttpNotFound();
+                Skill skill = db.Skills
+                    .Where(a => a.ID == id && a.User == user)
+                    .Single() as Skill;
+                getTagData(skill);
+                if (skill == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
+                return View(skill);
             }
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
-           
-            return View(skill);
+            catch
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+        
+            
         }
 
         // POST: /Skill/Edit/5
@@ -112,39 +129,56 @@ namespace CVHomepage.Controllers
         {
             //for some reason it's not understanding the skill being returned exists, so I'm using it's info
             // to find and then update a different skill variable.
-            var skillToUpdate = db.Skills
-               .Include(i => i.Tags)
-               .Include(i => i.Category)
-               .Where(i => i.ID == skill.ID )
-               .Single();
-            skillToUpdate.Name = skill.Name;
-            skillToUpdate.Notes = skill.Notes;
-            skillToUpdate.CVText = skill.CVText;
-            skillToUpdate.CategoryID = skill.CategoryID;
-            
-            skillToUpdate.Tags = new List<Tag>();
-            skill.Name = null;
-            if (selectedTags != null)
+
+            string user = User.Identity.GetUserId();
+            try
             {
-                foreach (var tag in selectedTags)
+                Skill skillToUpdate = db.Skills
+                    .Include(i => i.Tags)
+                    .Include(i => i.Category)
+                    .Where(a => a.ID == skill.ID && a.User == user)
+                    .Single() as Skill;
+
+                if (skillToUpdate == null)
                 {
-                    var tagToAdd = db.Tags.Find(int.Parse(tag));
-
-                    skillToUpdate.Tags.Add(tagToAdd);
+                    return HttpNotFound();
                 }
-            }
-            if (ModelState.IsValid)
-            {
-                
-                db.Entry(skillToUpdate).State = EntityState.Modified;
-                
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            getTagData(skill);
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
-            return View(skill);
+                skillToUpdate.Name = skill.Name;
+                skillToUpdate.Notes = skill.Notes;
+                skillToUpdate.CVText = skill.CVText;
+                skillToUpdate.CategoryID = skill.CategoryID;
+
+                skillToUpdate.Tags = new List<Tag>();
+                if (selectedTags != null)
+                {
+                    foreach (var tag in selectedTags)
+                    {
+                        var tagToAdd = db.Tags.Find(int.Parse(tag));
+                        skillToUpdate.Tags.Add(tagToAdd);
+                    }
+                }
+
+               
+
+                if (ModelState.IsValid)
+                {
+
+                    db.Entry(skillToUpdate).State = EntityState.Modified;
+
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                getTagData(skill);
+                ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", skill.CategoryID);
+                return View(skill);
+            }
+            catch
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+         
         }
 
         // GET: /Skill/Delete/5
@@ -154,12 +188,26 @@ namespace CVHomepage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Skill skill = db.Skills.Find(id);
-            if (skill == null)
+
+            string user = User.Identity.GetUserId();
+            try
             {
-                return HttpNotFound();
+                Skill skill = db.Skills
+                    .Where(a => a.ID == id && a.User == user)
+                    .Single() as Skill;
+                if (skill == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(skill);
             }
-            return View(skill);
+            catch
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+           
+
         }
 
         // POST: /Skill/Delete/5
@@ -167,10 +215,32 @@ namespace CVHomepage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Skill skill = db.Skills.Find(id);
-            db.Skills.Remove(skill);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            string user = User.Identity.GetUserId();
+            try
+            {
+                Skill skill = db.Skills
+                    .Where(a => a.ID == id && a.User == user)
+                    .Single() as Skill;
+                if (skill == null)
+                {
+                    return HttpNotFound();
+                }
+
+                db.Skills.Remove(skill);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
+            
         }
 
         protected override void Dispose(bool disposing)

@@ -89,7 +89,7 @@ namespace CVHomepage.Controllers
             }
             catch
             {
-                return HttpNotFound();
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             
         }
@@ -155,7 +155,7 @@ namespace CVHomepage.Controllers
             }
             catch
             {
-                return HttpNotFound();
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             
         }
@@ -183,7 +183,7 @@ namespace CVHomepage.Controllers
             }
             catch
             {
-                return HttpNotFound();
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
            
