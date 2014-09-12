@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using CVHomepage.Models;
 using CVHomepage.DAL;
 using CVHomepage.Helpers.SessionHelpers;
+using Microsoft.AspNet.Identity;
 
 namespace CVHomepage.Controllers
 {
@@ -20,7 +21,7 @@ namespace CVHomepage.Controllers
         public ActionResult Index()
         {
             
-            return View(db.CVs.ToList());
+            return View(db.CVs.ToList().Where(a => a.User == User.Identity.GetUserId() ));
         }
 
         
@@ -73,12 +74,24 @@ namespace CVHomepage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CV cv = db.CVs.Find(id);
-            if (cv == null)
+            string user = User.Identity.GetUserId();
+            try
+            {
+                CV cv = db.CVs
+                    .Where(a => a.ID == id && a.User == user)
+                    .Single() as CV;
+                if (cv == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(cv);
+            }
+            catch
             {
                 return HttpNotFound();
             }
-            return View(cv);
+            
         }
 
         // POST: /CV/Edit/5
@@ -88,9 +101,10 @@ namespace CVHomepage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="ID,Name,User")] CV cv, string[] removingSkills)
         {
+            string realUser = User.Identity.GetUserId();
             var cvToUpdate = db.CVs
                 .Include(s => s.Skills)
-                .Where(s => s.ID == cv.ID)
+                .Where(s => s.ID == cv.ID && s.User == realUser)
                 .Single();
 
             cvToUpdate.Name = cv.Name;
@@ -126,12 +140,24 @@ namespace CVHomepage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CV cv = db.CVs.Find(id);
-            if (cv == null)
+            string user = User.Identity.GetUserId();
+            try
+            {
+                CV cv = db.CVs
+                    .Where(a => a.ID == id && a.User == user)
+                    .Single() as CV;
+                if (cv == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(cv);
+            }
+            catch
             {
                 return HttpNotFound();
             }
-            return View(cv);
+            
         }
 
         // POST: /CV/Delete/5
@@ -139,10 +165,28 @@ namespace CVHomepage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CV cv = db.CVs.Find(id);
-            db.CVs.Remove(cv);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            string user = User.Identity.GetUserId();
+            try
+            {
+                CV cv = db.CVs
+                    .Where(a => a.ID == id && a.User == user)
+                    .Single() as CV;
+                if (cv == null)
+                {
+                    return HttpNotFound();
+                }
+
+                db.CVs.Remove(cv);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+            catch
+            {
+                return HttpNotFound();
+            }
+
+           
         }
 
         public ActionResult Select(int id)
@@ -166,6 +210,7 @@ namespace CVHomepage.Controllers
 
             db.Entry(cv).State = EntityState.Modified;
             db.SaveChanges();
+            SessionHelpers.CurrentSkills.Add(id);
             //return RedirectToAction("Index", "Skill", new { name = skill.Name });
             return Redirect(url);
         }
