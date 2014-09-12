@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CVHomepage.Models;
 using CVHomepage.DAL;
 using CVHomepage.ViewModels;
 using CVHomepage.Helpers.SessionHelpers;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace CVHomepage.Controllers
 {
@@ -20,12 +18,13 @@ namespace CVHomepage.Controllers
 
         // GET: /Skill/
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             string user = User.Identity.GetUserId();
             var skills = db.Skills.Include(s => s.Category)
                 .Include(s => s.Tags)
-                .Where(a => a.User == user);
+                .Where(a => a.User == user)
+                .OrderBy(a => a.Name);
 
             //this is used to tell people what cv they are going to add the skill to
             if (SessionHelpers.CurrentCV != 0)
@@ -33,7 +32,11 @@ namespace CVHomepage.Controllers
                 var currentCV = db.CVs.Find(SessionHelpers.CurrentCV);
                 ViewBag.CVName = currentCV.Name;
             }
-            return View(skills.ToList());
+
+            //paged list stuff
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(skills.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Skill/Details/5

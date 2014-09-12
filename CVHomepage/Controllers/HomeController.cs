@@ -24,5 +24,10 @@ namespace CVHomepage.Controllers
         {
             return View();
         }
+
+        public ActionResult CV()
+        {
+            return View();
+        }
     }
 }

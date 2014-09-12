@@ -233,3 +233,33 @@ input[type="checkbox"].input-validation-error {
         margin-right: 0;
     }
 }
+
+/* CV style*/
+#cv h1
+{
+	background-color:#BDBDBD;
+	border: 1px black solid;
+}
+
+#cv h2
+{
+	margin-left:10px;
+	display: block;
+	background-color:#FEE8D6;
+	border: 1px black solid;
+}
+
+#cv h3
+{
+	margin-left:20px;
+}
+
+#cv h4
+{
+	margin-left:30px;
+}
+
+#cv li
+{
+	margin-left:40px;
+}
