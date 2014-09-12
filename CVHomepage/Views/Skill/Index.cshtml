@@ -1,5 +1,8 @@
-﻿@model IEnumerable<CVHomepage.Models.Skill>
-@using CVHomepage.Helpers.SessionHelpers
+﻿
+@using CVHomepage.Helpers.SessionHelpers;
+@model PagedList.IPagedList<CVHomepage.Models.Skill>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -16,15 +19,15 @@
             Category
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
         </th>
         
         <th>
-            @Html.DisplayNameFor(model => model.CVText)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().CVText)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.Notes)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Notes)
         </th>
 
         <th>
@@ -81,3 +84,7 @@
 }
 
 </table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
