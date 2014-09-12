@@ -8,14 +8,15 @@ create a website that can display my cv, basic info, allow people to contact me,
 ##Todo:
 
 ###Priority
-- Add new tags or categories alongside skills
-- Integrate asp identity properly
+- Pagination
+- Search
 - Actual cv generator/builder
 - Enter Data
 - Some kind of guest account interaction to show off the demo
 - Add sorting and filtering to skills
 
 ###Plausible extensions
+- Add new tags or categories alongside skills to the initializor
 - Refactor to repository pattern
 - Refactor out to Onion Architecture
 - Refactor in general, especially get some of the trash out of the controllers if possible.
@@ -24,6 +25,7 @@ create a website that can display my cv, basic info, allow people to contact me,
 - Make it look better
 - Add more control to the CV, like reordering segments and bullet points. Swapping between bullets and paragraphs, etc.
 - Add control to styling of CVs
+- Integrate asp identity better
 
 
 ##IMPORTANT REMINDERS
