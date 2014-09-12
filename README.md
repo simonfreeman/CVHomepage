@@ -13,7 +13,7 @@ create a website that can display my cv, basic info, allow people to contact me,
 - Actual cv generator/builder
 - Enter Data
 - Some kind of guest account interaction to show off the demo
-- Some system that makes it easy/obvious that users need to save their cvs after adding stuff to the session
+- Add sorting and filtering to skills
 
 ###Plausible extensions
 - Refactor to repository pattern
