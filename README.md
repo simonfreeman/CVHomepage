@@ -13,7 +13,6 @@ create a website that can display my cv, basic info, allow people to contact me,
 - Search
 - Enter Data
 - Some kind of guest account interaction to show off the demo
-- Add sorting and filtering to skills
 - Use the session of skills so you could add/remove multiple skills page at once. Also check to see if the session syncs
 properly alongside the db changes that already exist.
 - Refactor  repeated code in controllers
