@@ -27,23 +27,7 @@ namespace CVHomepage.Controllers
         }
 
 
-        // GET: /CV/Details/5
-        [Authorize]
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CV cv = db.CVs.Find(id);
-            if (cv == null)
-            {
-                return HttpNotFound();
-            }
-
-
-            return View(cv);
-        }
+       
 
 
 
@@ -199,8 +183,36 @@ namespace CVHomepage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
+        }
 
-           
+        //GET: /cv/view/5
+        [Authorize]
+        public ActionResult View(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            string user = User.Identity.GetUserId();
+            try
+            {
+                CV cv = db.CVs
+                    .Include(s => s.Skills)
+                    .Where(a => a.ID == id && a.User == user)
+                    .Single() as CV;
+                if (cv == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ViewBag.CV = CVBuilder.Build(cv);
+                return View();
+
+            }
+            catch
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
         [Authorize]
@@ -231,34 +243,7 @@ namespace CVHomepage.Controllers
             return Redirect(url);
         }
 
-        [Authorize]
-        public ActionResult View(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            string user = User.Identity.GetUserId();
-            try
-            {
-                CV cv = db.CVs
-                    .Include(s => s.Skills)
-                    .Where(a => a.ID == id && a.User == user)
-                    .Single() as CV;
-                if (cv == null)
-                {
-                    return HttpNotFound();
-                }
-
-                ViewBag.CV = CVBuilder.Build(cv);
-                return View();
-
-            }
-            catch
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            }
-        }
+     
         protected override void Dispose(bool disposing)
         {
             if (disposing)

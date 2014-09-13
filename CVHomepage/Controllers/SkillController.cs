@@ -39,21 +39,6 @@ namespace CVHomepage.Controllers
             return View(skills.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: /Skill/Details/5
-        [Authorize]
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Skill skill = db.Skills.Find(id);
-            if (skill == null)
-            {
-                return HttpNotFound();
-            }
-            return View(skill);
-        }
 
         // GET: /Skill/Create
         [Authorize]
