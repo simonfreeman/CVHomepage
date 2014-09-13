@@ -23,15 +23,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.MenuLink("Home", "Index", "Home")</li>
-                    <li>@Html.MenuLink("About", "About", "Home")</li>
-                    <li>@Html.MenuLink("Portfolio", "Portfolio", "Home")</li>
-                    <li>@Html.MenuLink("CV", "CV", "Home")</li>
+                    @Html.MenuLink("Home", "Index", "Home")
+                    @Html.MenuLink("About", "About", "Home")
+                    @Html.MenuLink("Portfolio", "Portfolio", "Home")
+                    @Html.MenuLink("CV", "CV", "Home")
                     @{
                         string[] additionalNames = { "Skill", "Tag", "Category" };
                     }
-                    <li>@Html.MenuLink("CV Builder Demo", "Index", "CV", @additionalNames)</li>
-                    <li>@Html.MenuLink("Contact", "Index", "Contact")</li>
+                    @Html.MenuLink("CV Builder Demo", "Index", "CV", @additionalNames)
+                    @Html.MenuLink("Contact", "Index", "Contact")
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -184,7 +184,7 @@ input[type="checkbox"].input-validation-error {
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #fff;
-    background: rgba(255,255,255,0.2);
+    
 }
 
 .sidebar-nav li a:active,
@@ -206,6 +206,13 @@ input[type="checkbox"].input-validation-error {
     color: #fff;
     background: none;
 }
+
+.sidebar-nav li.active
+{
+    color: black;
+    background-color: #f9e77d;
+}
+
 
 @media(min-width:768px) {
     #wrapper {
@@ -232,6 +239,8 @@ input[type="checkbox"].input-validation-error {
         position: relative;
         margin-right: 0;
     }
+
+ 
 }
 
 /* CV style*/

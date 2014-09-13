@@ -31,15 +31,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.MenuLink("Home", "Index", "Home")</li>
-                    <li>@Html.MenuLink("About", "About", "Home")</li>
-                    <li>@Html.MenuLink("Portfolio", "Portfolio", "Home")</li>
-                    <li>@Html.MenuLink("CV", "CV", "Home")</li>
+                    @Html.MenuLink("Home", "Index", "Home")
+                    @Html.MenuLink("About", "About", "Home")
+                    @Html.MenuLink("Portfolio", "Portfolio", "Home")
+                    @Html.MenuLink("CV", "CV", "Home")
                     @{
                         string[] additionalNames = {"Skill", "Tag", "Category"};
                     }
-                    <li>@Html.MenuLink("CV Builder Demo", "Index", "CV", @additionalNames)</li>
-                    <li>@Html.MenuLink("Contact", "Index", "Contact")</li>
+                    @Html.MenuLink("CV Builder Demo", "Index", "CV", @additionalNames)
+                    @Html.MenuLink("Contact", "Index", "Contact")
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -51,11 +51,11 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li> CV Builder Demo Menu</li>
-                <li>@Html.MenuLink("CV Manager", "Index", "CV")</li>
-                <li>@Html.MenuLink("Skill Manager", "Index", "Skill")</li>
-                <li>@Html.MenuLink("Tag Manager", "Index", "Tag")</li>
-                <li>@Html.MenuLink("Category Manager", "Index", "Category")</li>
-                <li>@Html.MenuLink("Planned Features", "Planned", "CV")</li>
+                @Html.MenuLink("CV Manager", "Index", "CV")
+                @Html.MenuLink("Skill Manager", "Index", "Skill")
+                @Html.MenuLink("Tag Manager", "Index", "Tag")
+                @Html.MenuLink("Category Manager", "Index", "Category")
+                @Html.MenuLink("Planned Features", "Planned", "CV")
           
             </ul>
         </div>
