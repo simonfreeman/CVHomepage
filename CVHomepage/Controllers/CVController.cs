@@ -22,7 +22,10 @@ namespace CVHomepage.Controllers
         // GET: /CV/
         public ActionResult Index()
         {
-            
+            if (TempData["Message"] != null)
+            {
+                ViewBag.message = TempData["Message"];
+            }
             return View(db.CVs.ToList().Where(a => a.User == User.Identity.GetUserId() ));
         }
 
@@ -51,6 +54,7 @@ namespace CVHomepage.Controllers
             {
                 db.CVs.Add(cv);
                 db.SaveChanges();
+                TempData["message"] = cv.Name + " has been created";
                 return RedirectToAction("Index");
             }
 
@@ -119,7 +123,8 @@ namespace CVHomepage.Controllers
                 db.Entry(cvToUpdate).State = EntityState.Modified;
 
                 db.SaveChanges();
-                return RedirectToAction("Edit", new { id = cv.ID });
+                TempData["message"] = cv.Name + " has been edited";
+                return RedirectToAction("Index");
             }
 
             return View(cv);
@@ -176,6 +181,7 @@ namespace CVHomepage.Controllers
 
                 db.CVs.Remove(cv);
                 db.SaveChanges();
+                TempData["message"] = cv.Name + " has been deleted";
                 return RedirectToAction("Index");
 
             }
@@ -235,11 +241,25 @@ namespace CVHomepage.Controllers
             CV cv = db.CVs.Find(SessionHelpers.CurrentCV);
             Skill skill = db.Skills.Find(id);
             cv.Skills.Add(skill);
-
             db.Entry(cv).State = EntityState.Modified;
             db.SaveChanges();
+
             SessionHelpers.CurrentSkills.Add(id);
-            //return RedirectToAction("Index", "Skill", new { name = skill.Name });
+            TempData["message"] = "Add " + skill.Name + " to " + cv.Name;
+            return Redirect(url);
+        }
+
+        [Authorize]
+        public ActionResult RemoveSkill(int id, string url)
+        {
+            CV cv = db.CVs.Find(SessionHelpers.CurrentCV);
+            Skill skill = db.Skills.Find(id);
+            cv.Skills.Remove(skill);
+            db.Entry(cv).State = EntityState.Modified;
+            db.SaveChanges();
+
+            SessionHelpers.CurrentSkills.Remove(id);
+            TempData["message"] = "Removed " + skill.Name + " from " + cv.Name;
             return Redirect(url);
         }
 

@@ -33,6 +33,11 @@ namespace CVHomepage.Controllers
                 ViewBag.CVName = currentCV.Name;
             }
 
+            if (TempData["Message"] != null)
+            {
+                ViewBag.message = TempData["Message"];
+            }
+
             //paged list stuff
             int pageSize = 10;
             int pageNumber = (page ?? 1);
@@ -73,6 +78,7 @@ namespace CVHomepage.Controllers
             {
                 db.Skills.Add(skill);
                 db.SaveChanges();
+                TempData["message"] = skill.Name + " has been created";
                 return RedirectToAction("Index");
                 
             }
@@ -161,6 +167,8 @@ namespace CVHomepage.Controllers
                     db.Entry(skillToUpdate).State = EntityState.Modified;
 
                     db.SaveChanges();
+
+                    TempData["message"] = skill.Name + " has been edited";
                     return RedirectToAction("Index");
                 }
 
@@ -228,6 +236,7 @@ namespace CVHomepage.Controllers
 
                 db.Skills.Remove(skill);
                 db.SaveChanges();
+                TempData["message"] = skill.Name + " has been deleted";
                 return RedirectToAction("Index");
             }
             catch

@@ -8,6 +8,7 @@
     ViewBag.Title = "Index";
 }
 
+<p class="alert-success "> @ViewBag.message</p>
 <h2>Index</h2>
 
 <p>
@@ -72,8 +73,16 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
             }
             @if (SessionHelpers.CurrentCV != 0)
             {
-                string linkText = "Add to \"" + ViewBag.CVName + "\"";
-                @Html.ActionLink(linkText, "AddSkill", "CV", new { id = item.ID, url = Request.RawUrl },null) 
+                if (SessionHelpers.CurrentSkills.Contains(item.ID))
+                {
+                    string linkText = "Remove from\"" + ViewBag.CVName + "\"";
+                    @Html.ActionLink(linkText, "removeSkill", "CV", new { id = item.ID, url = Request.RawUrl }, null)
+                }
+                else 
+                { 
+                    string linkText = "Add to \"" + ViewBag.CVName + "\"";
+                    @Html.ActionLink(linkText, "AddSkill", "CV", new { id = item.ID, url = Request.RawUrl },null) 
+                }
             }
             <br />
             <br />
