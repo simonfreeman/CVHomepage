@@ -25,10 +25,15 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
     <tr>
         <th>
             @Html.ActionLink("Category", "Index", new {sortOrder = ViewBag.CategorySort, 
-                tagFilter = ViewBag.TagFilter, CategoryFilter = ViewBag.CategoryFilter})
+                tagFilter = ViewBag.TagFilter, 
+                CategoryFilter = ViewBag.CategoryFilter
+            })
         </th>
         <th>
-            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSort })
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSort,
+                tagFilter = ViewBag.TagFilter,
+                CategoryFilter = ViewBag.CategoryFilter
+            })
         </th>
         
         <th>
