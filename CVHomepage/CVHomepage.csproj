@@ -179,6 +179,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Services\CVBuilder.cs" />
     <Compile Include="Helpers\HTMLHelpers.cs" />
     <Compile Include="Helpers\SessionHelpers.cs" />
     <Compile Include="Models\Category.cs" />
@@ -268,6 +269,7 @@
     <Content Include="Views\Tag\_ViewStart.cshtml" />
     <Content Include="Views\Category\_ViewStart.cshtml" />
     <Content Include="Views\Home\CV.cshtml" />
+    <Content Include="Views\CV\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

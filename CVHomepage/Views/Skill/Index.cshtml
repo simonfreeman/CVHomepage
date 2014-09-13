@@ -13,6 +13,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
 <table class="table">
     <tr>
         <th>
@@ -30,10 +33,10 @@
             @Html.DisplayNameFor(model => model.FirstOrDefault().Notes)
         </th>
 
-        <th>
+        <th >
             Tags
         </th>
-        <th></th>
+        <th class="col-md-3"></th>
     </tr>
 
 @foreach (var item in Model) {

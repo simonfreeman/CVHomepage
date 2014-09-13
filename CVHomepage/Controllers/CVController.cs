@@ -8,8 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using CVHomepage.Models;
 using CVHomepage.DAL;
-using CVHomepage.Helpers.SessionHelpers;
+using CVHomepage.Services;
 using Microsoft.AspNet.Identity;
+using CVHomepage.Helpers.SessionHelpers;
 
 namespace CVHomepage.Controllers
 {
@@ -230,6 +231,34 @@ namespace CVHomepage.Controllers
             return Redirect(url);
         }
 
+        [Authorize]
+        public ActionResult View(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            string user = User.Identity.GetUserId();
+            try
+            {
+                CV cv = db.CVs
+                    .Include(s => s.Skills)
+                    .Where(a => a.ID == id && a.User == user)
+                    .Single() as CV;
+                if (cv == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ViewBag.CV = CVBuilder.Build(cv);
+                return View();
+
+            }
+            catch
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
