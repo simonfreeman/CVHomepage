@@ -14,8 +14,14 @@ create a website that can display my cv, basic info, allow people to contact me,
 - Enter Data
 - Some kind of guest account interaction to show off the demo
 - Add sorting and filtering to skills
-- Decide if I'm using skills in session or not
+- Use the session of skills so you could add/remove multiple skills page at once. Also check to see if the session syncs
+properly alongside the db changes that already exist.
 - Refactor  repeated code in controllers
+
+###Not quite as priority but still more prioritied than plausible extensions
+- Notifications to tags and categories
+- Better and more error checking for stupid and/or annoying people
+- Find some way to seperate out things like Education and Work Experience so you can add things like school name and employer name
 
 ###Plausible extensions
 - Add new tags or categories alongside skills to the initializor
@@ -28,6 +34,7 @@ create a website that can display my cv, basic info, allow people to contact me,
 - Add more control to the CV, like reordering segments and bullet points. Swapping between bullets and paragraphs, etc.
 - Add control to styling of CVs
 - Integrate asp identity better
+- -Better notifications
 
 
 ##IMPORTANT REMINDERS
