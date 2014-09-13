@@ -21,6 +21,7 @@ properly alongside the db changes that already exist.
 ###Not quite as priority but still more prioritied than plausible extensions
 - Notifications to tags and categories
 - Better and more error checking for stupid and/or annoying people
+- Find some way to seperate out things like Education and Work Experience so you can add things like school name and employer name
 
 ###Plausible extensions
 - Add new tags or categories alongside skills to the initializor
