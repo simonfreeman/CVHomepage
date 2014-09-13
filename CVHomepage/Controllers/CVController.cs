@@ -29,7 +29,11 @@ namespace CVHomepage.Controllers
             return View(db.CVs.ToList().Where(a => a.User == User.Identity.GetUserId() ));
         }
 
-
+        // GET: /CV/Upcoming
+        public ActionResult Planned()
+        {
+            return View();
+        }
        
 
 

@@ -270,6 +270,7 @@
     <Content Include="Views\Category\_ViewStart.cshtml" />
     <Content Include="Views\Home\CV.cshtml" />
     <Content Include="Views\CV\View.cshtml" />
+    <Content Include="Views\CV\Planned.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

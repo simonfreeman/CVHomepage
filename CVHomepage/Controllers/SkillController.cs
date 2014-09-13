@@ -16,6 +16,7 @@ namespace CVHomepage.Controllers
     {
         private CVContext db = new CVContext();
 
+
         // GET: /Skill/
         [Authorize]
         public ActionResult Index(int? page)
