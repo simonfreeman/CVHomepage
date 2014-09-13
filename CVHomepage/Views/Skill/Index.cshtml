@@ -20,10 +20,10 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 <table class="table">
     <tr>
         <th>
-            Category
+            @Html.ActionLink("Category", "Index", new {sortOrder = ViewBag.CategorySort})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSort })
         </th>
         
         <th>

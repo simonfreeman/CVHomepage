@@ -9,6 +9,7 @@ using CVHomepage.ViewModels;
 using CVHomepage.Helpers.SessionHelpers;
 using Microsoft.AspNet.Identity;
 using PagedList;
+using System;
 
 namespace CVHomepage.Controllers
 {
@@ -19,13 +20,35 @@ namespace CVHomepage.Controllers
 
         // GET: /Skill/
         [Authorize]
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string sortOrder)
         {
+
+
             string user = User.Identity.GetUserId();
             var skills = db.Skills.Include(s => s.Category)
                 .Include(s => s.Tags)
-                .Where(a => a.User == user)
-                .OrderBy(a => a.Name);
+                .Where(a => a.User == user);
+
+            //Sort order of the results    
+            ViewBag.CategorySort = String.IsNullOrEmpty(sortOrder) ? "categoryDesc" : "";
+            ViewBag.NameSort = sortOrder == "name" ? "nameDesc" : "name";
+
+            switch (sortOrder)
+            {
+                case "categoryDesc":
+                    skills = skills.OrderByDescending(s => s.Category.Name);
+                    break;
+                case "name":
+                    skills = skills.OrderBy(s => s.Name);
+                    break;
+                case "nameDesc":
+                    skills = skills.OrderByDescending(s => s.Name);
+                    break;
+                default:
+                    skills = skills.OrderBy(s => s.Category.Name);
+                    break;
+            }
+
 
             //this is used to tell people what cv they are going to add the skill to
             if (SessionHelpers.CurrentCV != 0)
