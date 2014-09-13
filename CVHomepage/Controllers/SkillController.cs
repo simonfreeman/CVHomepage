@@ -20,15 +20,28 @@ namespace CVHomepage.Controllers
 
         // GET: /Skill/
         [Authorize]
-        public ActionResult Index(int? page, string sortOrder)
+        public ActionResult Index(int? page, string sortOrder, string categoryFilter, string tagFilter)
         {
-
-
             string user = User.Identity.GetUserId();
             var skills = db.Skills.Include(s => s.Category)
                 .Include(s => s.Tags)
                 .Where(a => a.User == user);
+            //Deal with category filters
+            if (categoryFilter!= null)
+            {
+                skills = skills.Where(s => s.Category.Name == categoryFilter);
+                ViewBag.Reset = true;
+                ViewBag.CategoryFilter = categoryFilter;
+                TempData["message"] = "Now showing all skills in the " + categoryFilter + " category.";
+            }
 
+            if (tagFilter != null)
+            {
+                skills = skills.Where(s => s.Tags.Any(m => m.Name==tagFilter));
+                ViewBag.Reset = true;
+                ViewBag.TagFilter= tagFilter;
+                TempData["message"] = "Now showing all skills with the " + tagFilter + " tag.";
+            }
             //Sort order of the results    
             ViewBag.CategorySort = String.IsNullOrEmpty(sortOrder) ? "categoryDesc" : "";
             ViewBag.NameSort = sortOrder == "name" ? "nameDesc" : "name";
