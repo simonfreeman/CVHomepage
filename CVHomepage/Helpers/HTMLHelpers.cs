@@ -24,12 +24,12 @@ namespace CVHomepage.Helpers.HTMLHelpers
             return new MvcHtmlString(builder.ToString());
         }
 
-        public static MvcHtmlString MenuLink(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName, string[] additionalNames)
+        public static MvcHtmlString MenuLink(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName, string[] additionalControllerNames)
         {
 
             var currentAction = htmlHelper.ViewContext.RouteData.GetRequiredString("action");
             var currentController = htmlHelper.ViewContext.RouteData.GetRequiredString("controller");
-            List<string> additionalNameList = new List<string>(additionalNames);
+            List<string> additionalNameList = new List<string>(additionalControllerNames);
             var builder = new TagBuilder("li")
             {
                 InnerHtml = htmlHelper.ActionLink(linkText, actionName, controllerName).ToHtmlString()
