@@ -5,7 +5,7 @@
 }
 @using Microsoft.AspNet.Identity;
 
-<h2>Create</h2>
+<h1>Create New CV</h1>
 
 
 @using (Html.BeginForm()) 
@@ -13,7 +13,6 @@
     @Html.AntiForgeryToken()
     @Html.Hidden("User", User.Identity.GetUserId());
     <div class="form-horizontal">
-        <h4>CV</h4>
         <hr />
         @Html.ValidationSummary(true)
 

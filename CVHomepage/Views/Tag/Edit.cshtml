@@ -1,10 +1,10 @@
 ﻿@model CVHomepage.Models.Tag
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editing" + @Model.Name;
 }
 
-<h2>Edit</h2>
+<h1>Editing "@Model.Name"</h1>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Tag</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.ID)
@@ -48,7 +47,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Tag Manager", "Index")
 </div>
 
 @section Scripts {

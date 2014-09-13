@@ -244,7 +244,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Skill\Create.cshtml" />
     <Content Include="Views\Skill\Delete.cshtml" />
-    <Content Include="Views\Skill\Details.cshtml" />
     <Content Include="Views\Skill\Edit.cshtml" />
     <Content Include="Views\Skill\Index.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
@@ -260,7 +259,6 @@
     <Content Include="Views\Home\Portfolio.cshtml" />
     <Content Include="Views\CV\Create.cshtml" />
     <Content Include="Views\CV\Delete.cshtml" />
-    <Content Include="Views\CV\Details.cshtml" />
     <Content Include="Views\CV\Edit.cshtml" />
     <Content Include="Views\CV\Index.cshtml" />
     <Content Include="Views\Shared\_SidebarLayout.cshtml" />
