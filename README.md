@@ -8,14 +8,14 @@ create a website that can display my cv, basic info, allow people to contact me,
 ##Todo:
 
 ###Priority
+- Make a smarter/less hardcoded cv builder so I can get rid of that horrible stringbuilding placeholder.
 - Pagination
 - Search
-- Actual cv generator/builder
 - Enter Data
 - Some kind of guest account interaction to show off the demo
 - Add sorting and filtering to skills
 - Decide if I'm using skills in session or not
-- Refactor out repeated code in controllers
+- Refactor  repeated code in controllers
 
 ###Plausible extensions
 - Add new tags or categories alongside skills to the initializor
