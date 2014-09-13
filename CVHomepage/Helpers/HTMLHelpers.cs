@@ -21,7 +21,7 @@ namespace CVHomepage.Helpers.HTMLHelpers
             if (controllerName == currentController && actionName == currentAction)
                 builder.AddCssClass("active");
 
-            return new MvcHtmlString(builder.ToString());
+            return new MvcHtmlString(builder.ToString()); 
         }
 
         public static MvcHtmlString MenuLink(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName, string[] additionalControllerNames)
