@@ -14,6 +14,7 @@ create a website that can display my cv, basic info, allow people to contact me,
 - Enter Data
 - Some kind of guest account interaction to show off the demo
 - Add sorting and filtering to skills
+- Decide if I'm using skills in session or not.
 
 ###Plausible extensions
 - Add new tags or categories alongside skills to the initializor
