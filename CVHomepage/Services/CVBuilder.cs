@@ -17,14 +17,16 @@ namespace CVHomepage.Services
     {
         public static string Build(CV cv)
         {
-            StringBuilder educationString= new StringBuilder();
+            StringBuilder secondaryEducationString= new StringBuilder();
+            StringBuilder universityString = new StringBuilder();
+            StringBuilder finalEducationString = new StringBuilder();
             StringBuilder softwareString = new StringBuilder();
             StringBuilder webString = new StringBuilder();
             StringBuilder computingString = new StringBuilder();
             StringBuilder workString = new StringBuilder();
             StringBuilder additionalString = new StringBuilder();
-            bool education, software, web, computing, work, additional;
-           education = software = web = computing = work = additional = false;
+            bool secondaryEducation, university, software, web, computing, work, additional;
+           secondaryEducation = software = web = computing = work = additional = university = false;
 
 
             foreach (var skill in cv.Skills)
@@ -32,17 +34,43 @@ namespace CVHomepage.Services
                 switch (skill.Category.Name)
                 {
                     case "Education":
-                        if (education == false)
+                        if (secondaryEducation == false && university == false)
                         {
-                            educationString.Append("<h2>");
-                            educationString.Append(@skill.Category.Name);
-                            educationString.Append("</h2>");
-                            education = true;
+                            finalEducationString.Append("<h2>");
+                            finalEducationString.Append(@skill.Category.Name);
+                            finalEducationString.Append("</h2>");
+                        }
+
+                        if( skill.Tags.Any(s => s.Name == "Secondary Education"))
+                        {
+                            if (secondaryEducation == false)
+                            {
+                                secondaryEducationString.Append("<h3>");
+                                secondaryEducationString.Append("Secondary Education");
+                                secondaryEducationString.Append("</h3>");
+                                secondaryEducation = true;
+                            }
+                            secondaryEducationString.Append("<p class='list'> ");
+                            secondaryEducationString.Append(@skill.CVText);
+                            secondaryEducationString.Append("</p>");
+                        }
+
+                        if (skill.Tags.Any(s => s.Name == "University"))
+                        {
+                            if (university == false)
+                            {
+                                universityString.Append("<h3>");
+                                universityString.Append("University");
+                                universityString.Append("</h3>");
+                                university = true;
+                            }
+                            universityString.Append("<p class='list'> ");
+                            universityString.Append(@skill.CVText);
+                            universityString.Append("</p>");
                         }
                         
-                        educationString.Append("<p class='list'> ");
-                        educationString.Append(@skill.CVText);
-                        educationString.Append("</p>");
+                        
+                        
                         break;
 
                     case "Software Development":
@@ -92,6 +120,9 @@ namespace CVHomepage.Services
                             workString.Append("</h2>");
                             work = true;
                         }
+                        workString.Append("<h3>");
+                        workString.Append(@skill.Name);
+                        workString.Append("</h3>");
                         workString.Append("<p class='list'> ");
                         workString.Append(@skill.CVText);
                         workString.Append("</p>");
@@ -114,8 +145,11 @@ namespace CVHomepage.Services
                         break;
                 }
             }
+
+            finalEducationString.Append(universityString.ToString());
+            finalEducationString.Append(secondaryEducationString.ToString());
             StringBuilder finalString = new StringBuilder();
-            finalString.Append(educationString.ToString());
+            finalString.Append(finalEducationString.ToString());
             finalString.Append(softwareString.ToString());
             finalString.Append(webString.ToString());
             finalString.Append(computingString.ToString());
