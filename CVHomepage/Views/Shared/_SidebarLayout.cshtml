@@ -51,7 +51,7 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li> CV Builder Demo Menu</li>
-                @Html.MenuLink("CV Manager", "Index", "CV", new string[] {"CV"})
+                @Html.MenuLink("CV Manager", "Index", "CV", new string[] {"CV"},new string[,] {{"Action","Controller"}, {"Planned", "CV"}})
                 @Html.MenuLink("Skill Manager", "Index", "Skill", new string[] { "Skill" })
                 @Html.MenuLink("Tag Manager", "Index", "Tag", new string[] { "Tag" })
                 @Html.MenuLink("Category Manager", "Index", "Category", new string[] { "Category" })
