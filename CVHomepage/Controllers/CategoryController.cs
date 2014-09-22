@@ -16,12 +16,14 @@ namespace CVHomepage.Controllers
         private CVContext db = new CVContext();
 
         // GET: /Category/
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Categories.ToList());
         }
 
 //        // GET: /Category/Details/5
+//        [Authorize]
 //        public ActionResult Details(int? id)
 //        {
 //            if (id == null)
@@ -37,6 +39,7 @@ namespace CVHomepage.Controllers
 //        }
 
 //        // GET: /Category/Create
+//        [Authorize]
 //        public ActionResult Create()
 //        {
 //            return View();
@@ -47,6 +50,7 @@ namespace CVHomepage.Controllers
 //        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 //        [HttpPost]
 //        [ValidateAntiForgeryToken]
+        //[Authorize]
 //        public ActionResult Create([Bind(Include = "ID,Name,Description")] Category category)
 //        {
 //            if (ModelState.IsValid)
@@ -60,6 +64,7 @@ namespace CVHomepage.Controllers
 //        }
 
 //        // GET: /Category/Edit/5
+        //[Authorize]
 //        public ActionResult Edit(int? id)
 //        {
 //            if (id == null)
@@ -77,6 +82,7 @@ namespace CVHomepage.Controllers
 //        // POST: /Category/Edit/5
 //        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 //        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[Authorize]
 //        [HttpPost]
 //        [ValidateAntiForgeryToken]
 //        public ActionResult Edit([Bind(Include = "ID,Name,Description")] Category category)
@@ -91,6 +97,7 @@ namespace CVHomepage.Controllers
 //        }
 
 //        // GET: /Category/Delete/5
+        //[Authorize]
 //        public ActionResult Delete(int? id)
 //        {
 //            if (id == null)
@@ -106,6 +113,7 @@ namespace CVHomepage.Controllers
 //        }
 
 //        // POST: /Category/Delete/5
+        //[Authorize]
 //        [HttpPost, ActionName("Delete")]
 //        [ValidateAntiForgeryToken]
 //        public ActionResult DeleteConfirmed(int id)

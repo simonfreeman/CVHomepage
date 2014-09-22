@@ -156,6 +156,11 @@ namespace CVHomepage.Controllers
                     return HttpNotFound();
                 }
 
+                //deletes the cv from the CurrentCV in session to prevent a bug in skill controller 
+                if (SessionHelpers.CurrentCV == id)
+                {
+                    SessionHelpers.CurrentCV = 0;
+                }
                 return View(cv);
             }
             catch
