@@ -9,6 +9,7 @@ namespace CVHomepage.Helpers.HTMLHelpers
 {
     public static class HtmlHelpers
     {
+
         public static MvcHtmlString MenuLink(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName)
         {
             var currentAction = htmlHelper.ViewContext.RouteData.GetRequiredString("action");
